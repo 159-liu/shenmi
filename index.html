@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360安全卫士 自动下载</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: #f5f7fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: #fff;
+            padding: 60px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+        .status {
+            color: #0099ff;
+            font-size: 18px;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+        .tip {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #0099ff;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            background: #007acc;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #95a5a6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>360安全卫士 自动下载</h1>
+        <p class="status" id="status">正在启动自动下载，请稍候...</p>
+        <p class="tip">如果浏览器没有自动下载，请点击下方按钮手动下载<br>若弹出拦截提示，请点击「允许」完成下载</p>
+        <a class="download-btn" href="https://down.360safe.com/instbeta.exe" download="360安全卫士最新版.exe">
+            手动立即下载
+        </a>
+        <p class="footer">文件来源：360官方官网 | 最新版本 2026</p>
+    </div>
+
+    <script>
+        // 页面加载完成后，自动触发下载
+        window.onload = function() {
+            // 创建隐藏的a标签，触发自动下载
+            const autoDownloadLink = document.createElement('a');
+            autoDownloadLink.href = 'https://down.360safe.com/instbeta.exe';
+            autoDownloadLink.download = '360安全卫士最新版.exe';
+            autoDownloadLink.style.display = 'none';
+            
+            // 加入页面并触发点击
+            document.body.appendChild(autoDownloadLink);
+            autoDownloadLink.click();
+            document.body.removeChild(autoDownloadLink);
+
+            // 更改状态提示
+            setTimeout(() => {
+                document.getElementById('status').innerText = '下载已启动！请查看浏览器下载栏';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
